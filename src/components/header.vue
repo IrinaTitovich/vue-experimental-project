@@ -13,6 +13,7 @@ export default {};
 
 <style lang="scss">
     .header{
+        height: 8vh;
         &__box{
             padding: 1em;
         }

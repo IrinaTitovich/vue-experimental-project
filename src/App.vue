@@ -5,6 +5,7 @@
       <app-navigation v-show="toggled">
         <template v-slot:home>{{links.home}}</template>
         <span>{{links.main}}</span>
+        <template v-slot:cards>{{links.cards}}</template>
         <template v-slot:about>{{links.about}}</template>
       </app-navigation>
       <router-view />
@@ -23,7 +24,8 @@ export default {
       links:{
         home:'Home',
         main:'Main',
-        about:'About'
+        about:'About',
+        cards:'Cards'
       },
       toggled:false
     }

@@ -3,6 +3,7 @@
     <ul class="nav__list">
       <li class="nav__link-wrapper "> <router-link active-class class="nav__link" to="/"> <slot name="home"></slot> </router-link> </li>
       <li class="nav__link-wrapper"> <router-link active-class class="nav__link" to='/main'> <slot></slot> </router-link> </li>
+      <li class="nav__link-wrapper"> <router-link active-class class="nav__link" to="/cards"> <slot name="cards"></slot> </router-link></li>
       <li class="nav__link-wrapper"> <router-link active-class class="nav__link" to="/about"> <slot name="about"></slot> </router-link></li>
     </ul>
   </nav>
@@ -19,7 +20,7 @@ $color-active:#385F71;
 $color-dark:#1d2d44;
 
 .nav {
-  height: 100vh;
+  min-height: 92vh;
   width: 20vw;
   min-width: 200px;
   max-width: 300px;
