@@ -10,9 +10,9 @@
         <router-link 
         active-class 
         class="nav__link" 
-        to="/about"
+        to="/admin/add-direction"
         > 
-        <slot name="about"></slot>
+        <slot name="admin"></slot>
         <span class="arrow" v-if="aditionalLink">&lt;</span>
         <span class="arrow" v-else>&gt;</span>
       </router-link></li>
@@ -20,14 +20,16 @@
         <router-link 
         active-class 
         class="nav__link nav__aditional-link" 
-        to="/admin"
+        to="/admin/reserved-trips"
         v-if='aditionalLink'
-        > Add new travel direction</router-link></li>
+        > Reserved trips </router-link></li>
     </ul>
   </nav>
 </template>
 
 <script>
+
+
 export default {
   data(){
     return{
