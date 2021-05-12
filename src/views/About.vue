@@ -11,7 +11,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import appTrip from '../components/trip'
-import {mapGetters} from 'vuex'
+import { tripMapper, trips} from '../store/trips'
 
 export default Vue.extend({
   components:{
@@ -24,7 +24,7 @@ export default Vue.extend({
   },
 
   computed:{
-    ...mapGetters({trips:'trips/trips'}),
+    ...tripMapper.mapGetters(['trips']),
     sum(){
       return this.trips.reduce((acc,item)=>{
       return acc+item.count*item.price
@@ -33,7 +33,6 @@ export default Vue.extend({
   },
   methods:{
     summ(count:number,price:number){
-      console.log(this.sum)
       this.sum=Number(this.sum)+ Number(count)*Number(price)
     }
   }
@@ -47,7 +46,7 @@ $color-active:#385F71;
 .about{
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  // justify-content: center;
   &__sum{
     display: flex;
     justify-content: space-around;

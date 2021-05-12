@@ -26,10 +26,6 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import {store} from '../store'
-import {ICard}  from '../store/cards'
-import {mapMutations} from 'vuex'
-
 
 export default Vue.extend({
     name: 'Trip',
@@ -44,6 +40,7 @@ export default Vue.extend({
         },
         img:{
             type:String,
+            default:'https://www.google.com/url?sa=i&url=http%3A%2F%2Fwww.radionetplus.ru%2Fizobrazhenija%2Fkrasivye_kartinki%2F37441-krasivye-kartinki-na-rabochiy-stol-hochetsya-tepla-33-foto.html&psig=AOvVaw1k9H8ZnFe4uN1c7g_LUSDf&ust=1620726099469000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMjrva3pvvACFQAAAAAdAAAAABAJ'
         },
         count:{
             type:Number,
@@ -87,6 +84,7 @@ $color-active:#385F71;
     &__img{
         width: 300px;
     }
+
     &__btns{
         display: flex;
         justify-content: space-around;

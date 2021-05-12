@@ -28,6 +28,7 @@ import Vue from 'vue';
 import {store} from '../store'
 import appInput from '../components/input'
 import {ICard}  from '../store/cards'
+import { cardsMapper } from '../store/cards'
 
 export default Vue.extend({
     name: 'Cards',
@@ -36,29 +37,22 @@ export default Vue.extend({
     data(){
         return{
             searchText:''
-            // renderCards:this.$store.state.cards.cards
         }
     },
     components: {
         appInput
     },
     methods:{
-        console(){
-            console.log()
-        },
-        filter(event:any){
-            console.log(event)
-        },
         getLink(name:string):string{
             return '/cards/'+name.toLowerCase()
         }
     },
     computed:{
+        ...cardsMapper.mapGetters(['cards']),
         renderCards():ICard[]{
-            return this.$store.state.cards.cards.filter(item=>item.name.toLowerCase().includes(this.searchText))
+            return this.cards.filter(item=>item.name.toLowerCase().includes(this.searchText))
         }
-    },
-    
+    }    
 });
 </script>
 <style lang="scss">
@@ -67,18 +61,12 @@ $color-dark:#1d2d44;
 $color-bgr:#F5F0F6;
 $color-active:#385F71;
 .cards{
-    padding: 2rem;
-    max-width: 100%;
-    min-width: 80vw;
-    // max-height: 80vh;
-    // min-height: 80vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    margin: 1em auto;
+
     &__container{
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
     }
 }
     .card{

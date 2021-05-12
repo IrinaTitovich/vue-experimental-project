@@ -1,4 +1,4 @@
-import { Getters, Mutations, Actions, Module } from 'vuex-smart-module'
+import { Getters, Mutations, Actions, Module,createMapper } from 'vuex-smart-module'
 
 
 export interface ICard{
@@ -44,10 +44,10 @@ class CardsState{
     ]
 }
 class CardsGetters extends Getters<CardsState>{
-    get cards(){
+    get cards():ICard[]{
         return this.state.cards
     }
-    getCard(name:string){
+    getCard(name:string):ICard|undefined{
         return this.state.cards.find(i=>i.name.toLowerCase()===name)
     }
 }
@@ -70,6 +70,10 @@ class CardsMutations extends Mutations<CardsState>{
             card.count=0
         } 
     }
+    addNewCard(card:ICard):void{
+        console.log(card)
+        this.state.cards.push(card)
+    }
 
 }
 class CardsActions extends Actions<
@@ -80,9 +84,12 @@ class CardsActions extends Actions<
 >{
     
 }
+
 export const cards = new Module({
     state:CardsState,
     getters:CardsGetters,
     mutations:CardsMutations,
     actions: CardsActions
 })
+
+export const cardsMapper=createMapper(cards)

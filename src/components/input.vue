@@ -20,10 +20,9 @@ export default Vue.extend({
 
     data(){
         return{
-            renderCards:this.$store.state.cards.cards,
             search:''
         }
-    },
+    }
 })
 
 </script>
@@ -33,6 +32,8 @@ $color-dark:#1d2d44;
 $color-bgr:#F5F0F6;
 $color-active:#385F71;
 .search{
+    display: flex;
+    justify-content: center;
     &__text{
         padding: 0.5em 1em;
         font-size: 1.2em;

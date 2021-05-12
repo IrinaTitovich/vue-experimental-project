@@ -15,7 +15,7 @@
                     <span>{{sumPrice}}$</span>
                 </div>
                 <div class="big-card__btns">
-                    <button @click="decrementCount(card.name)">-</button>
+                    <button @click="decrement(card.name)">-</button>
                     <span>{{card.count}}</span>
                     <button @click="incrementCount(card.name)">+</button>
                 </div>
@@ -30,7 +30,8 @@
 import Vue from 'vue';
 import {store} from '../store'
 import {ICard}  from '../store/cards'
-import {mapMutations} from 'vuex'
+import {cardsMapper} from '../store/cards'
+import { tripMapper } from '@/store/trips';
 
 
 export default Vue.extend({
@@ -45,33 +46,36 @@ export default Vue.extend({
         console.log(this)
     },
     computed:{
-        // ...mapGetters(takeCard:'card'),
-        card():ICard{
-            return this.$store.getters["cards/getCard"](this.$route.params.name)
+        ...cardsMapper.mapGetters(['getCard']),
+        card():ICard|undefined{
+            return this.getCard(this.$route.params.name)
         },
         sumPrice():number{
-            return this.card.count*this.card.price
+            if(this.card){
+                return this.card.count*this.card.price
+            } else{
+                return 0
+            }
         },
     },
     methods:{
-        ...mapMutations({increment:'cards/incrementCount',decrement:'cards/decrementCount',zeroCount:'cards/zeroCount',addTrip:'trips/addTrip'}),
-        incrementCount(name:string):void{
-            this.increment(name)
-        },
-        decrementCount(name:string):void{
-            if(this.card.count<=0){
+        ...cardsMapper.mapMutations(['incrementCount','decrementCount','zeroCount']),
+        ...tripMapper.mapMutations(['addTrip']),
+        // incrementCount(name:string):void{
+        //     this.incrementCount(name)
+        // },
+        decrement(name:string):void{
+            if(this.card && this.card.count<=0){
                 return
             }
-            this.decrement(name)
+            this.decrementCount(name)
         },
         buyTrip(trip:ICard):void{
             if(trip.count>0){
                 trip.date=new Date().toLocaleDateString() + ' '+new Date().toLocaleTimeString()
                 this.addTrip(trip)
             }
-            console.log(trip.name)
-            this.zeroCount(trip.name)
-
+                this.zeroCount(trip.name)
         }
 
     }

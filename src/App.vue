@@ -7,6 +7,7 @@
         <span>{{links.main}}</span>
         <template v-slot:cards>{{links.cards}}</template>
         <template v-slot:about>{{links.about}}</template>
+        <template v-slot:admin>{{links.admin}}</template>
       </app-navigation>
       <router-view />
     </main>
@@ -25,7 +26,8 @@ export default {
         home:'Home',
         main:'Main',
         about:'About',
-        cards:'Cards'
+        cards:'Cards',
+        admin:'Admin'
       },
       toggled:false
     }
@@ -34,12 +36,6 @@ export default {
     AppNavigation,
     AppHeader
   },
-  methods:{
-    cl(){
-      console.log('to')
-    }
-  }
-
 };
 </script>
 

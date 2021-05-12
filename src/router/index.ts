@@ -12,7 +12,8 @@ const ROUTE_NAMES = {
     main:'Main',
     about:'About',
     cards:'Cards',
-    card:'Card'
+    card:'Card',
+    admin:'Admin'
 }
 
 const routes: Array<RouteConfig> = [
@@ -57,6 +58,18 @@ const routes: Array<RouteConfig> = [
       //     }
       // }
   },
+  {
+    path: '/admin',
+    name: ROUTE_NAMES.admin,
+    component: () => import(/* webpackChunkName: "cards" */ '../views/Admin.vue'),
+    // beforeEnter: (to, from, next) => {
+    //     if (store.state.auth) {
+    //         next()
+    //     } else {
+    //         next({ name: 'home' })
+    //     }
+    // }
+},
   {
       path: '*',
       redirect: { name: 'home' }

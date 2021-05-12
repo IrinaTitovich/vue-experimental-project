@@ -1,4 +1,4 @@
-import { Getters, Mutations, Actions, Module } from 'vuex-smart-module'
+import { Getters, Mutations, Actions, Module, createMapper } from 'vuex-smart-module'
 import {ICard} from '../cards'
 
 class TripsState{
@@ -33,3 +33,5 @@ export const trips = new Module({
     mutations:TripsMutations,
     actions: TripsActions
 })
+
+export const tripMapper= createMapper(trips)
